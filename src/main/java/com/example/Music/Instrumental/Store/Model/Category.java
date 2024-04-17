@@ -23,7 +23,7 @@ public class Category {
 
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "Registration")
-	private List<Registration> Registration;
+	private List<Registrations> Registration;
 
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "deliveryStatus")

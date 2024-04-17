@@ -1,5 +1,7 @@
 package com.example.Music.Instrumental.Store.Model;
 
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class DeliveryStatus {
@@ -25,12 +28,17 @@ public class DeliveryStatus {
 	@Column
 	private int DeliveryFee;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "address_id")
-
 	public int getId() {
 		return id;
 	}
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id")
+	private List<Registrations> Registration;
+
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "deliveryStatus")
+	private List<DeliveryStatus> deliveryStatus;
 
 	public void setId(int id) {
 		this.id = id;
@@ -67,5 +75,4 @@ public class DeliveryStatus {
 	public void setDeliveryFee(int deliveryFee) {
 		DeliveryFee = deliveryFee;
 	}
-
 }

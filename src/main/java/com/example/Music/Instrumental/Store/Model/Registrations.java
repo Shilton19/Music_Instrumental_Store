@@ -10,27 +10,27 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Registration {
+public class Registrations {
 	@Id
 	@Column
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int id;
 	@Column
-	private String Username;
+	private String Username;    //LIST of PRODUCTS
 	@Column
 	private String Password;
 	@Column
-	private String MobileNumber;
+	private int MobileNumber;
 	@Column
 	private String MailId;
 	@Column
 	private String Address;
 	@JoinColumn(name = "address_id")
-	private String instruments;
+	
 
 	@ManyToOne(cascade = CascadeType.ALL)
 
-	// gettter setter
+							// gettter setter
 	public int getId() {
 		return id;
 	}
@@ -55,11 +55,11 @@ public class Registration {
 		Password = password;
 	}
 
-	public String getMobileNumber() {
+	public int getMobileNumber() {
 		return MobileNumber;
 	}
 
-	public void setMobileNumber(String mobileNumber) {
+	public void setMobileNumber(int mobileNumber) {
 		MobileNumber = mobileNumber;
 	}
 
@@ -77,13 +77,5 @@ public class Registration {
 
 	public void setAddress(String address) {
 		Address = address;
-	}
-
-	public String getInstruments() {
-		return instruments;
-	}
-
-	public void setInstruments(String instruments) {
-		this.instruments = instruments;
 	}
 }
