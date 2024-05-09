@@ -9,12 +9,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToMany;
 
 @Entity
 public class Products {
 	@Id
-	@Column
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int id;
 	@Column
@@ -36,7 +36,8 @@ public class Products {
 		this.name = name;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "category")
-	private List<Category> category;
+//	@OneToMany(cascade = CascadeType.ALL)
+//	@JoinTable(name="products_category",
+//	joinColumns =@JoinColumn(name = "category"))
+//	private List<Category> category;
 }

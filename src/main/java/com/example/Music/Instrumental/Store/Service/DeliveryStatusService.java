@@ -45,9 +45,9 @@ public class DeliveryStatusService {
 			if (deliverystatus.getMobile() != null) {
 				deliv.setMobile(deliverystatus.getMobile()); // ------doubt
 			}
-			if (deliverystatus.getAddress() != null) {
-				deliv.setAddress(deliverystatus.getAddress());
-			}
+//			if (deliverystatus.getAddress() != null) {
+//				deliv.setAddress(deliverystatus.getAddress());
+//			}
 			return deliverystatusrepository.save(deliv);
 		} else {
 			throw new DeliveryStatusNotFoundException("Given data is not found");

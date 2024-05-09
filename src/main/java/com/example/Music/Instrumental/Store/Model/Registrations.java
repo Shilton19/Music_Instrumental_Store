@@ -1,5 +1,7 @@
 package com.example.Music.Instrumental.Store.Model;
 
+import java.util.Set;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Registrations {
@@ -16,21 +19,22 @@ public class Registrations {
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int id;
 	@Column
-	private String Username;    //LIST of PRODUCTS
+	private String Username; 
 	@Column
 	private String Password;
 	@Column
-	private int MobileNumber;
+	private String MobileNumber;
 	@Column
 	private String MailId;
 	@Column
 	private String Address;
-	@JoinColumn(name = "address_id")
-	
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@OneToMany(cascade= CascadeType.ALL)
+	@JoinColumn(name="")
+	private Category category;
+//	@JoinColumn(name = "address_id")
+//	@ManyToOne(cascade = CascadeType.ALL)
 
-							// gettter setter
 	public int getId() {
 		return id;
 	}
@@ -55,11 +59,11 @@ public class Registrations {
 		Password = password;
 	}
 
-	public int getMobileNumber() {
+	public String getMobileNumber() {
 		return MobileNumber;
 	}
 
-	public void setMobileNumber(int mobileNumber) {
+	public void setMobileNumber(String mobileNumber) {
 		MobileNumber = mobileNumber;
 	}
 

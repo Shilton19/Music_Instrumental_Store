@@ -22,39 +22,39 @@ import com.example.Music.Instrumental.Store.Service.AddressService;
 @RequestMapping("/musical")
 public class AddressController {
 	@Autowired
-	AddressService folkservice;
+	AddressService addressservice;
 
 	@GetMapping
 //	@RequestMapping(method=RequestMethod.GET)//not used now a days
 	public ResponseEntity<List<Address>> getAddress() {
-		List<Address> Address = folkservice.getMusic();
+		List<Address> Address = addressservice.getMusic();
 		return new ResponseEntity<List<Address>>(Address, HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Address> getAddressId(@PathVariable("id") int id)
 			throws ClassNotFoundException, AddressNotFoundException {
-		Address Address = folkservice.getMusicId(id);
+		Address Address = addressservice.getMusicId(id);
 		return new ResponseEntity<Address>(Address, HttpStatus.OK);
 	}
 
 	@PostMapping
 	public ResponseEntity<Address> createorUpdate(@RequestBody Address Address) {
-		Address update = folkservice.createmusic(Address);
+		Address update = addressservice.createmusic(Address);
 		return new ResponseEntity<Address>(update, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Address> UpdateCategory(@RequestBody Address Address, @PathVariable("id") int id)
 			throws AddressNotFoundException { // request from DB
-		Address std = folkservice.updatemusic(Address, id);
+		Address std = addressservice.updatemusic(Address, id);
 		return new ResponseEntity<Address>(std, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
 	public HttpStatus deleteAddress(@PathVariable("id") int id)
 			throws ClassNotFoundException, AddressNotFoundException {
-		folkservice.deletemusic(id);
+		addressservice.deletemusic(id);
 		return HttpStatus.OK;
 	}
 }

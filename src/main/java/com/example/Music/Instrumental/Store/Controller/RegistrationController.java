@@ -20,7 +20,7 @@ import com.example.Music.Instrumental.Store.Model.Registrations;
 import com.example.Music.Instrumental.Store.Service.RegistrationService;
 
 @RestController
-@RequestMapping("/music flow")
+@RequestMapping("/musicflow")
 public class RegistrationController {
 	@Autowired
 	RegistrationService melts;

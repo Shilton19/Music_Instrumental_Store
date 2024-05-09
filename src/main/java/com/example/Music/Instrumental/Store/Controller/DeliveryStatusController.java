@@ -19,7 +19,7 @@ import com.example.Music.Instrumental.Store.Model.DeliveryStatusNotFoundExceptio
 import com.example.Music.Instrumental.Store.Service.DeliveryStatusService;
 
 @RestController
-@RequestMapping("/musics")
+@RequestMapping("/deliverys")
 public class DeliveryStatusController {
 	@Autowired
 	DeliveryStatusService melodyservice;

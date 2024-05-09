@@ -1,21 +1,23 @@
+
 package com.example.Music.Instrumental.Store.Model;
 
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToMany;
 
 @Entity
 public class Payment {
-	@Column
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String BankAccount;
 	@Column
@@ -27,29 +29,31 @@ public class Payment {
 	@Column
 	private boolean Amountcredited;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "Registration")
-	private List<Registrations> Registration;
-
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "deliveryStatus")
-	private List<DeliveryStatus> deliveryStatus;
-	
-
-	public Payment(int id, String bankAccount, String uPI, String cOD, String deliveryfee, boolean amountcredited,
-			List<com.example.Music.Instrumental.Store.Model.Registrations> registration,
-			List<DeliveryStatus> deliveryStatus) {
-		super();
-		this.id = id;
-		BankAccount = bankAccount;
-		UPI = uPI;
-		COD = cOD;
-		Deliveryfee = deliveryfee;
-		Amountcredited = amountcredited;
-		Registration = registration;
-		this.deliveryStatus = deliveryStatus;
-	}
-
+//	@OneToMany(cascade = CascadeType.ALL)
+//	@JoinTable(name="payment_registration",
+//	joinColumns =@JoinColumn(name = "Registration"))
+//	private List<Registrations> Registration;
+//
+//	@OneToMany(cascade = CascadeType.ALL)
+//	@JoinTable(name="payment_deliverystatus",
+//	joinColumns =@JoinColumn(name = "deliveryStatus"))
+//	private List<DeliveryStatus> deliveryStatus;
+//	
+//
+//	public Payment(int id, String bankAccount, String uPI, String cOD, String deliveryfee, boolean amountcredited,
+//			List<com.example.Music.Instrumental.Store.Model.Registrations> registration,
+//			List<DeliveryStatus> deliveryStatus) {
+//		super();
+//		this.id = id;
+//		BankAccount = bankAccount;
+//		UPI = uPI;
+//		COD = cOD;
+//		Deliveryfee = deliveryfee;
+//		Amountcredited = amountcredited;
+//		Registration = registration;
+//		this.deliveryStatus = deliveryStatus;
+//	}
+//
 	public int getId() {
 		return id;
 	}
@@ -58,22 +62,22 @@ public class Payment {
 		this.id = id;
 	}
 
-	public List<Registrations> getRegistration() {
-		return Registration;
-	}
-
-	public void setRegistration(List<Registrations> registration) {
-		Registration = registration;
-	}
-
-	public List<DeliveryStatus> getDeliveryStatus() {
-		return deliveryStatus;
-	}
-
-	public void setDeliveryStatus(List<DeliveryStatus> deliveryStatus) {
-		this.deliveryStatus = deliveryStatus;
-	}
-
+//	public List<Registrations> getRegistration() {
+//		return Registration;
+//	}
+//
+//	public void setRegistration(List<Registrations> registration) {
+//		Registration = registration;
+//	}
+//
+//	public List<DeliveryStatus> getDeliveryStatus() {
+//		return deliveryStatus;
+//	}
+//
+//	public void setDeliveryStatus(List<DeliveryStatus> deliveryStatus) {
+//		this.deliveryStatus = deliveryStatus;
+//	}
+//
 	public String getBankAccount() {
 		return BankAccount;
 	}

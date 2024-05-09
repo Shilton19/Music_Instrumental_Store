@@ -59,9 +59,9 @@ public class AddressService {
 			if (address.getPincode() != null) {
 				addre.setPincode(address.getPincode());
 			}
-			if (address.getDeliverystatus() != null) {
-				addre.setDeliverystatus(address.getDeliverystatus());
-			}
+//			if (address.getDeliverystatus() != null) {
+//				addre.setDeliverystatus(address.getDeliverystatus());
+//			}
 			return addressrepository.save(addre);
 		} else {
 			throw new AddressNotFoundException("Given data is not found");

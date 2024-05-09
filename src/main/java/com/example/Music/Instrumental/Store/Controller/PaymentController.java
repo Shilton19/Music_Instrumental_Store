@@ -46,8 +46,7 @@ public class PaymentController {
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Payment> UpdatePayment(
-			@RequestBody Payment Payment, @PathVariable("id") int id)
-			throws PaymentNotFoundException { // request from DB
+			@RequestBody Payment Payment, @PathVariable("id") int id) throws PaymentNotFoundException{
 		Payment std = songservice.UpdateMusic(Payment, id);
 		return new ResponseEntity<Payment>(std, HttpStatus.OK);
 	}

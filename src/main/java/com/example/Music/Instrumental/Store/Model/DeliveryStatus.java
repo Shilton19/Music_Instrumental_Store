@@ -4,6 +4,8 @@ import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,30 +17,21 @@ import jakarta.persistence.OneToMany;
 @Entity
 public class DeliveryStatus {
 	@Id
-	@Column
-	@GeneratedValue(strategy = GenerationType.TABLE)
-
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	@Column
 	private String Name;
 	@Column
 	private String mobile;
-	@Column
-	private Address address;
+//	@ManyToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "address_id")
+//	private Address address;
 	@Column
 	private int DeliveryFee;
 
 	public int getId() {
 		return id;
 	}
-
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "address_id")
-	private List<Registrations> Registration;
-
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "deliveryStatus")
-	private List<DeliveryStatus> deliveryStatus;
 
 	public void setId(int id) {
 		this.id = id;
@@ -60,13 +53,13 @@ public class DeliveryStatus {
 		this.mobile = mobile;
 	}
 
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
+//	public Address getAddress() {
+//		return address;
+//	}
+//
+//	public void setAddress(Address address) {
+//		this.address = address;
+//	}
 
 	public int getDeliveryFee() {
 		return DeliveryFee;
@@ -75,4 +68,18 @@ public class DeliveryStatus {
 	public void setDeliveryFee(int deliveryFee) {
 		DeliveryFee = deliveryFee;
 	}
+
+	public DeliveryStatus(int id, String name, String mobile, Address address, int deliveryFee) {
+		super();
+		this.id = id;
+		Name = name;
+		this.mobile = mobile;
+		DeliveryFee = deliveryFee;
+	}
+
+	public DeliveryStatus() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 }

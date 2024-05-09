@@ -38,7 +38,7 @@ public class PaymentService {
 	}
 
 	public Payment UpdateMusic(Payment payment, int id) throws PaymentNotFoundException {
-		Optional<Payment> paym = paymentrepository.findById(payment.getId());
+		Optional<Payment> paym = paymentrepository.findById(id);
 		if (paym.isPresent()) {
 			Payment paymen = paym.get();
 			if (payment.getBankAccount() != null) {
