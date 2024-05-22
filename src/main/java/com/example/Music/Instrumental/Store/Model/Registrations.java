@@ -1,5 +1,7 @@
 package com.example.Music.Instrumental.Store.Model;
 
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,36 +9,35 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Registrations {
 	@Id
 	@Column
-	@GeneratedValue(strategy = GenerationType.TABLE)
-	private int id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int Userid;
 	@Column
-	private String Username;    //LIST of PRODUCTS
+	private String Username;
 	@Column
 	private String Password;
 	@Column
-	private int MobileNumber;
+	private String MobileNumber;
 	@Column
 	private String MailId;
 	@Column
 	private String Address;
-	@JoinColumn(name = "address_id")
-	
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL) // cascade all-if any changes did in parent, it affects child class too
+	@JoinColumn(name = "category")
+	private List<Category> category;
 
-							// gettter setter
 	public int getId() {
-		return id;
+		return Userid;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.Userid = id;
 	}
 
 	public String getUsername() {
@@ -55,11 +56,11 @@ public class Registrations {
 		Password = password;
 	}
 
-	public int getMobileNumber() {
+	public String getMobileNumber() {
 		return MobileNumber;
 	}
 
-	public void setMobileNumber(int mobileNumber) {
+	public void setMobileNumber(String mobileNumber) {
 		MobileNumber = mobileNumber;
 	}
 

@@ -25,7 +25,6 @@ public class PaymentController {
 	PaymentService songservice;
 
 	@GetMapping
-//	@RequestMapping(method=RequestMethod.GET)//not used now a days
 	public ResponseEntity<List<Payment>> getPayment() {
 		List<Payment> Payment = songservice.getMusic();
 		return new ResponseEntity<List<Payment>>(Payment, HttpStatus.OK);
@@ -45,9 +44,8 @@ public class PaymentController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Payment> UpdatePayment(
-			@RequestBody Payment Payment, @PathVariable("id") int id)
-			throws PaymentNotFoundException { // request from DB
+	public ResponseEntity<Payment> UpdatePayment(@RequestBody Payment Payment, @PathVariable("id") int id)
+			throws PaymentNotFoundException {
 		Payment std = songservice.UpdateMusic(Payment, id);
 		return new ResponseEntity<Payment>(std, HttpStatus.OK);
 	}

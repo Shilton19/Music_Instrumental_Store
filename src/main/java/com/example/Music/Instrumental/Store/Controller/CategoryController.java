@@ -25,7 +25,6 @@ public class CategoryController {
 	CategoryService musicservice;
 
 	@GetMapping
-//	@RequestMapping(method=RequestMethod.GET)//not used now a days
 	public ResponseEntity<List<Category>> getCategory() {
 		List<Category> Category = musicservice.getMusic();
 		return new ResponseEntity<List<Category>>(Category, HttpStatus.OK);

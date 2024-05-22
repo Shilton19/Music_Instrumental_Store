@@ -1,21 +1,24 @@
 package com.example.Music.Instrumental.Store.Model;
 
-import java.util.List;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
-
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
+@Entity
 public class PlaceOrder {
 	@Id
 	@Column
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int productid;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address")
+	private Address address;
 
 	public int getProductid() {
 		return productid;
@@ -54,16 +57,8 @@ public class PlaceOrder {
 		// TODO Auto-generated constructor stub
 	}
 
-	private String productname; // ------
+	private String productname;
 	private String productmodel;
 	private int price;
-
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "Registration")
-	private List<Registrations> Registration;
-
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "deliveryStatus")
-	private List<DeliveryStatus> deliveryStatus;
 
 }

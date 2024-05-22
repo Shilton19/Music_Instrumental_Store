@@ -30,13 +30,14 @@ public class CategoryService {
 			throw new CategoryNOtFoundException("Given data is not found");
 		}
 	}
+
 	public Category createmusic(Category category) {
 		Category cate = categoryrepository.save(category);
 		return cate;
 	}
 
 	public Category UpdateMusic(Category category, int id) throws CategoryNOtFoundException {
-		Optional<Category> cate = categoryrepository.findById(category.getInstrumentid());
+		Optional<Category> cate = categoryrepository.findById(id);
 		if (cate.isPresent()) {
 			Category categ = cate.get();
 			if (category.getInstrumentmodel() != null) {

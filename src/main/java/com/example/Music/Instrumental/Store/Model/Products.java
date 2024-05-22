@@ -14,7 +14,6 @@ import jakarta.persistence.OneToMany;
 @Entity
 public class Products {
 	@Id
-	@Column
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int id;
 	@Column
@@ -37,6 +36,6 @@ public class Products {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "category")
-	private List<Category> category;
+	@JoinColumn(name = "placeorder")
+	private List<PlaceOrder> placeorder;
 }

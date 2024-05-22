@@ -37,7 +37,7 @@ public class ProductsService {
 	}
 
 	public Products UpdateMusic(Products products, int id) throws ProductsNotFoundException {
-		Optional<Products> prod = productsrepository.findById(products.getId());
+		Optional<Products> prod = productsrepository.findById(id);
 		if (prod.isPresent()) {
 			Products produc = prod.get();
 			if (products.getName() != null) {

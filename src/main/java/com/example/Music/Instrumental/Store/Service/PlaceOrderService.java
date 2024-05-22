@@ -36,7 +36,7 @@ public class PlaceOrderService {
 	}
 
 	public PlaceOrder UpdateMusic(PlaceOrder placeorder, int id) throws PlaceOrderNotFoundException {
-		Optional<PlaceOrder> plac = Placeorderrepository.findById(placeorder.getProductid());
+		Optional<PlaceOrder> plac = Placeorderrepository.findById(id);
 		if (plac.isPresent()) {
 			PlaceOrder place = plac.get();
 			if (placeorder.getProductmodel() != null) { // -----

@@ -9,7 +9,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -22,12 +21,8 @@ public class Category {
 	private String instrumentmodel;
 
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "Registration")
-	private List<Registrations> Registration;
-
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "deliveryStatus")
-	private List<DeliveryStatus> deliveryStatus;
+	@JoinColumn(name = "products")
+	private List<Products> products;
 
 	public Category() {
 		super();

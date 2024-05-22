@@ -3,7 +3,6 @@ package com.example.Music.Instrumental.Store.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientProperties.Registration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,7 +19,7 @@ import com.example.Music.Instrumental.Store.Model.Registrations;
 import com.example.Music.Instrumental.Store.Service.RegistrationService;
 
 @RestController
-@RequestMapping("/music flow")
+@RequestMapping("/musicflow")
 public class RegistrationController {
 	@Autowired
 	RegistrationService melts;

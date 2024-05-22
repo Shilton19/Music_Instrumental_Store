@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import com.example.Music.Instrumental.Store.Model.Payment;
 import com.example.Music.Instrumental.Store.Model.PaymentNotFoundException;
 import com.example.Music.Instrumental.Store.Repository.PaymentRepository;
@@ -38,7 +37,7 @@ public class PaymentService {
 	}
 
 	public Payment UpdateMusic(Payment payment, int id) throws PaymentNotFoundException {
-		Optional<Payment> paym = paymentrepository.findById(payment.getId());
+		Optional<Payment> paym = paymentrepository.findById(id);
 		if (paym.isPresent()) {
 			Payment paymen = paym.get();
 			if (payment.getBankAccount() != null) {

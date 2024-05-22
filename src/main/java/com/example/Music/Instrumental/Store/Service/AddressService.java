@@ -47,7 +47,7 @@ public class AddressService {
 	}
 
 	public Address updatemusic(Address address, int id) throws AddressNotFoundException {
-		Optional<Address> addr = addressrepository.findById(address.getId());
+		Optional<Address> addr = addressrepository.findById(id);
 		if (addr.isPresent()) {
 			Address addre = addr.get();
 			if (address.getCity() != null) {
@@ -59,9 +59,9 @@ public class AddressService {
 			if (address.getPincode() != null) {
 				addre.setPincode(address.getPincode());
 			}
-			if (address.getDeliverystatus() != null) {
-				addre.setDeliverystatus(address.getDeliverystatus());
-			}
+//			if (address.getDeliverystatus() != null) {
+//				addre.setDeliverystatus(address.getDeliverystatus());
+//			}
 			return addressrepository.save(addre);
 		} else {
 			throw new AddressNotFoundException("Given data is not found");

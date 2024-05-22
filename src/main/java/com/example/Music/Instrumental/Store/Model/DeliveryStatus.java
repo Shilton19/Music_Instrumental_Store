@@ -1,6 +1,7 @@
 package com.example.Music.Instrumental.Store.Model;
 
-import java.util.List;
+import java.sql.Timestamp;
+import java.util.Date;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -9,70 +10,90 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.SequenceGenerator;
 
 @Entity
 public class DeliveryStatus {
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "orderstatus_generator")
+	@SequenceGenerator(name = "orderstatus_generator", sequenceName = "orderstatus_seq", allocationSize = 1)
+	private int orderid;
 	@Column
-	@GeneratedValue(strategy = GenerationType.TABLE)
-
-	private int id;
+	private Date orderingDate;
 	@Column
-	private String Name;
+	private boolean OrderAssigned;
 	@Column
-	private String mobile;
+	private boolean OrderDispatched;
 	@Column
-	private Address address;
-	@Column
-	private int DeliveryFee;
+	private boolean OrderDelivered;
 
-	public int getId() {
-		return id;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id", unique = false)
+	private Registrations registrations;
+
+	public DeliveryStatus(int orderid, Timestamp orderingDate, boolean orderAssigned, boolean orderDispatched,
+			boolean orderDelivered, Registrations registrations, Payment payment) {
+		super();
+		this.orderid = orderid;
+		this.orderingDate = orderingDate;
+		OrderAssigned = orderAssigned;
+		OrderDispatched = orderDispatched;
+		OrderDelivered = orderDelivered;
+		this.registrations = registrations;
+		// this.payment = payment;
 	}
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "address_id")
-	private List<Registrations> Registration;
-
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "deliveryStatus")
-	private List<DeliveryStatus> deliveryStatus;
-
-	public void setId(int id) {
-		this.id = id;
+	public int getOrderid() {
+		return orderid;
 	}
 
-	public String getName() {
-		return Name;
+	public void setOrderid(int orderid) {
+		this.orderid = orderid;
 	}
 
-	public void setName(String name) {
-		Name = name;
+	public Registrations getRegistrations() {
+		return registrations;
 	}
 
-	public String getMobile() {
-		return mobile;
+	public void setRegistrations(Registrations registrations) {
+		this.registrations = registrations;
 	}
 
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
+	public DeliveryStatus() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public Address getAddress() {
-		return address;
+	public Date getOrderingDate() {
+		return orderingDate;
 	}
 
-	public void setAddress(Address address) {
-		this.address = address;
+	public void setOrderingDate(Date orderingDate) {
+		this.orderingDate = orderingDate;
 	}
 
-	public int getDeliveryFee() {
-		return DeliveryFee;
+	public boolean isOrderAssigned() {
+		return OrderAssigned;
 	}
 
-	public void setDeliveryFee(int deliveryFee) {
-		DeliveryFee = deliveryFee;
+	public void setOrderAssigned(boolean orderAssigned) {
+		OrderAssigned = orderAssigned;
+	}
+
+	public boolean isOrderDispatched() {
+		return OrderDispatched;
+	}
+
+	public void setOrderDispatched(boolean orderDispatched) {
+		OrderDispatched = orderDispatched;
+	}
+
+	public boolean isOrderDelivered() {
+		return OrderDelivered;
+	}
+
+	public void setOrderDelivered(boolean orderDelivered) {
+		OrderDelivered = orderDelivered;
 	}
 }

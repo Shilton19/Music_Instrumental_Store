@@ -37,7 +37,7 @@ public class HistoryService {
 	}
 
 	public History UpdateMusic(History history, int id) throws HistoryNotFoundException {
-		Optional<History> hist = historyrepository.findById(history.getId());
+		Optional<History> hist = historyrepository.findById(id);
 		if (hist.isPresent()) {
 			History histo = hist.get();
 			return historyrepository.save(histo);

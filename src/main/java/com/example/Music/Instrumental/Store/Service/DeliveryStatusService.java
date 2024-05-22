@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.example.Music.Instrumental.Store.Model.DeliveryStatus;
 import com.example.Music.Instrumental.Store.Model.DeliveryStatusNotFoundException;
 import com.example.Music.Instrumental.Store.Repository.DeliveryStatusRepository;
+
 @Service
 public class DeliveryStatusService {
 	@Autowired
@@ -36,17 +37,20 @@ public class DeliveryStatusService {
 	}
 
 	public DeliveryStatus UpdateMusic(DeliveryStatus deliverystatus, int id) throws DeliveryStatusNotFoundException {
-		Optional<DeliveryStatus> deli = deliverystatusrepository.findById(deliverystatus.getId());
+		Optional<DeliveryStatus> deli = deliverystatusrepository.findById(id);
 		if (deli.isPresent()) {
 			DeliveryStatus deliv = deli.get();
-			if (deliverystatus.getName() != null) { // --doubt
-				deliv.setName(deliverystatus.getName()); // -----doubt
+			if (deliverystatus.getOrderingDate() != null) {
+				deliv.setOrderingDate(deliverystatus.getOrderingDate());
 			}
-			if (deliverystatus.getMobile() != null) {
-				deliv.setMobile(deliverystatus.getMobile()); // ------doubt
+			if (deliverystatus.isOrderAssigned() != false) {
+				deliv.setOrderAssigned(deliverystatus.isOrderAssigned());
 			}
-			if (deliverystatus.getAddress() != null) {
-				deliv.setAddress(deliverystatus.getAddress());
+			if (deliverystatus.isOrderDispatched() != false) {
+				deliv.setOrderDispatched(deliverystatus.isOrderDispatched());
+			}
+			if (deliverystatus.isOrderDelivered() != false) {
+				deliv.setOrderDelivered(deliverystatus.isOrderDelivered());
 			}
 			return deliverystatusrepository.save(deliv);
 		} else {

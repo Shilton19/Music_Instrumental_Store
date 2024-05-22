@@ -19,13 +19,12 @@ import com.example.Music.Instrumental.Store.Model.DeliveryStatusNotFoundExceptio
 import com.example.Music.Instrumental.Store.Service.DeliveryStatusService;
 
 @RestController
-@RequestMapping("/musics")
+@RequestMapping("/deliverys")
 public class DeliveryStatusController {
 	@Autowired
 	DeliveryStatusService melodyservice;
 
 	@GetMapping
-//	@RequestMapping(method=RequestMethod.GET)//not used now a days
 	public ResponseEntity<List<DeliveryStatus>> getDeliveryStatus() {
 		List<DeliveryStatus> DeliveryStatus = melodyservice.getMusic();
 		return new ResponseEntity<List<DeliveryStatus>>(DeliveryStatus, HttpStatus.OK);

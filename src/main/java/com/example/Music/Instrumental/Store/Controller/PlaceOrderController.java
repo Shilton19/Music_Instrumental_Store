@@ -25,7 +25,6 @@ public class PlaceOrderController {
 	PlaceOrderService karnaticservice;
 
 	@GetMapping
-//	@RequestMapping(method=RequestMethod.GET)//not used now a days
 	public ResponseEntity<List<PlaceOrder>> getPlaceOrder() {
 		List<PlaceOrder> PlaceOrder = karnaticservice.getMusic();
 		return new ResponseEntity<List<PlaceOrder>>(PlaceOrder, HttpStatus.OK);

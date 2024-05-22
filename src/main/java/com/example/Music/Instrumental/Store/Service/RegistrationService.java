@@ -37,7 +37,7 @@ public class RegistrationService {
 	}
 
 	public Registrations UpdateMusic(Registrations Registrations, int id) throws RegistrationNOtFoundException {
-			Optional<Registrations> rege = Registrationsrepository.findById(Registrations.getId());
+			Optional<Registrations> rege = Registrationsrepository.findById(id);
 			if (rege.isPresent()) {
 				Registrations regi = rege.get();
 				if (Registrations.getUsername() != null) {
@@ -46,7 +46,7 @@ public class RegistrationService {
 				if (Registrations.getPassword() != null) {
 					regi.setPassword(Registrations.getPassword());
 				}
-				if (Registrations.getMobileNumber() != 0) {
+				if (Registrations.getMobileNumber() != null) {
 					regi.setMobileNumber(Registrations.getMobileNumber());
 				}
 				if (Registrations.getMailId() != null) {
