@@ -1,7 +1,5 @@
 package com.example.Music.Instrumental.Store.Model;
 
-import java.util.List;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,15 +7,23 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Products {
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
 	@Column
 	private String name;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "category")
+	private Category category;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "placeorder")
+	private PlaceOrder placeorder;
 
 	public int getId() {
 		return id;
@@ -35,7 +41,20 @@ public class Products {
 		this.name = name;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "placeorder")
-	private List<PlaceOrder> placeorder;
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public PlaceOrder getPlaceorder() {
+		return placeorder;
+	}
+
+	public void setPlaceorder(PlaceOrder placeorder) {
+		this.placeorder = placeorder;
+	}
+
 }

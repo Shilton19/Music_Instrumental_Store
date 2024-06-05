@@ -22,39 +22,39 @@ import com.example.Music.Instrumental.Store.Service.HistoryService;
 @RequestMapping("/drum")
 public class HistoryController {
 	@Autowired
-	HistoryService temposervice;
+	HistoryService historyservice;
 
 	@GetMapping
 //	@RequestMapping(method=RequestMethod.GET)//not used now a days
 	public ResponseEntity<List<History>> getHistory() {
-		List<History> History = temposervice.getMusic();
+		List<History> History = historyservice.getMusic();
 		return new ResponseEntity<List<History>>(History, HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<History> getHistoryId(@PathVariable("id") int id)
 			throws ClassNotFoundException, HistoryNotFoundException {
-		History History = temposervice.getMusicId(id);
+		History History = historyservice.getMusicId(id);
 		return new ResponseEntity<History>(History, HttpStatus.OK);
 	}
 
 	@PostMapping
 	public ResponseEntity<History> createorUpdate(@RequestBody History History) {
-		History update = temposervice.createmusic(History);
+		History update = historyservice.createmusic(History);
 		return new ResponseEntity<History>(update, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<History> UpdateHistory(@RequestBody History History, @PathVariable("id") int id)
 			throws HistoryNotFoundException { // request from DB
-		History std = temposervice.UpdateMusic(History, id);
+		History std = historyservice.UpdateMusic(History, id);
 		return new ResponseEntity<History>(std, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
 	public HttpStatus deleteHistory(@PathVariable("id") int id)
 			throws ClassNotFoundException, HistoryNotFoundException {
-		temposervice.deletemusic(id);
+		historyservice.deletemusic(id);
 		return HttpStatus.OK;
 	}
 }

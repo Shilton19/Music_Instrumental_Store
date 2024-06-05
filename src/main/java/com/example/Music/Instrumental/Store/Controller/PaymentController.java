@@ -22,38 +22,38 @@ import com.example.Music.Instrumental.Store.Service.PaymentService;
 @RequestMapping("/musicguide")
 public class PaymentController {
 	@Autowired
-	PaymentService songservice;
+	PaymentService paymentservice;
 
 	@GetMapping
 	public ResponseEntity<List<Payment>> getPayment() {
-		List<Payment> Payment = songservice.getMusic();
+		List<Payment> Payment = paymentservice.getMusic();
 		return new ResponseEntity<List<Payment>>(Payment, HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Payment> getPaymentId(@PathVariable("id") int id)
 			throws ClassNotFoundException, PaymentNotFoundException {
-		Payment Payment = songservice.getMusicId(id);
+		Payment Payment = paymentservice.getMusicId(id);
 		return new ResponseEntity<Payment>(Payment, HttpStatus.OK);
 	}
 
 	@PostMapping
 	public ResponseEntity<Payment> createorUpdate(@RequestBody Payment Payment) {
-		Payment update = songservice.createmusic(Payment);
+		Payment update = paymentservice.createmusic(Payment);
 		return new ResponseEntity<Payment>(update, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Payment> UpdatePayment(@RequestBody Payment Payment, @PathVariable("id") int id)
 			throws PaymentNotFoundException {
-		Payment std = songservice.UpdateMusic(Payment, id);
+		Payment std = paymentservice.UpdateMusic(Payment, id);
 		return new ResponseEntity<Payment>(std, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
 	public HttpStatus deletePayment(@PathVariable("id") int id)
 			throws ClassNotFoundException, PaymentNotFoundException {
-		songservice.deletemusic(id);
+		paymentservice.deletemusic(id);
 		return HttpStatus.OK;
 	}
 }

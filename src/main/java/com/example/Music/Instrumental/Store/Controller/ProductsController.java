@@ -22,39 +22,38 @@ import com.example.Music.Instrumental.Store.Service.ProductsService;
 @RequestMapping("/musicmind")
 public class ProductsController {
 	@Autowired
-	ProductsService westernservice;
+	ProductsService productservice;
 
 	@GetMapping
-//	@RequestMapping(method=RequestMethod.GET)//not used now a days
 	public ResponseEntity<List<Products>> getProducts() {
-		List<Products> Products = westernservice.getMusic();
+		List<Products> Products = productservice.getMusic();
 		return new ResponseEntity<List<Products>>(Products, HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Products> getCategoryId(@PathVariable("id") int id)
 			throws ClassNotFoundException, ProductsNotFoundException {
-		Products Products = westernservice.getMusicId(id);
+		Products Products = productservice.getMusicId(id);
 		return new ResponseEntity<Products>(Products, HttpStatus.OK);
 	}
 
 	@PostMapping
 	public ResponseEntity<Products> createorUpdate(@RequestBody Products Products) {
-		Products update = westernservice.createmusic(Products);
+		Products update = productservice.createmusic(Products);
 		return new ResponseEntity<Products>(update, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Products> UpdateProducts(@RequestBody Products Products, @PathVariable("id") int id)
 			throws ProductsNotFoundException { // request from DB
-		Products std = westernservice.UpdateMusic(Products, id);
+		Products std = productservice.UpdateMusic(Products, id);
 		return new ResponseEntity<Products>(std, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
 	public HttpStatus deleteProducts(@PathVariable("id") int id)
 			throws ClassNotFoundException, ProductsNotFoundException {
-		westernservice.deletemusic(id);
+		productservice.deletemusic(id);
 		return HttpStatus.OK;
 	}
 }

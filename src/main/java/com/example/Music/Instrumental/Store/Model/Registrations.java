@@ -10,11 +10,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Registrations {
 	@Id
-	@Column
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int Userid;
 	@Column
@@ -25,19 +25,21 @@ public class Registrations {
 	private String MobileNumber;
 	@Column
 	private String MailId;
-	@Column
-	private String Address;
 
 	@OneToMany(cascade = CascadeType.ALL) // cascade all-if any changes did in parent, it affects child class too
-	@JoinColumn(name = "category")
-	private List<Category> category;
+	@JoinColumn(name = "placeorder")
+	private List<PlaceOrder> placeorder;
 
-	public int getId() {
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address")
+	private Address address;
+
+	public int getUserid() {
 		return Userid;
 	}
 
-	public void setId(int id) {
-		this.Userid = id;
+	public void setUserid(int userid) {
+		Userid = userid;
 	}
 
 	public String getUsername() {
@@ -72,11 +74,20 @@ public class Registrations {
 		MailId = mailId;
 	}
 
-	public String getAddress() {
-		return Address;
+	public List<PlaceOrder> getPlaceorder() {
+		return placeorder;
 	}
 
-	public void setAddress(String address) {
-		Address = address;
+	public void setPlaceorder(List<PlaceOrder> placeorder) {
+		this.placeorder = placeorder;
 	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 }

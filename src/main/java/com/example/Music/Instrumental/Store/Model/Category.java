@@ -15,7 +15,7 @@ import jakarta.persistence.OneToMany;
 public class Category {
 	@Id
 	@Column
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int instrumentid;
 	private String instrumentname;
 	private String instrumentmodel;
@@ -53,4 +53,13 @@ public class Category {
 	public void setInstrumentmodel(String instrumentmodel) {
 		this.instrumentmodel = instrumentmodel;
 	}
+
+	public List<Products> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Products> products) {
+		this.products = products;
+	}
+
 }

@@ -22,38 +22,38 @@ import com.example.Music.Instrumental.Store.Service.DeliveryStatusService;
 @RequestMapping("/deliverys")
 public class DeliveryStatusController {
 	@Autowired
-	DeliveryStatusService melodyservice;
+	DeliveryStatusService deliverystatusservice;
 
 	@GetMapping
 	public ResponseEntity<List<DeliveryStatus>> getDeliveryStatus() {
-		List<DeliveryStatus> DeliveryStatus = melodyservice.getMusic();
+		List<DeliveryStatus> DeliveryStatus = deliverystatusservice.getMusic();
 		return new ResponseEntity<List<DeliveryStatus>>(DeliveryStatus, HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<DeliveryStatus> getCategoryId(@PathVariable("id") int id)
 			throws ClassNotFoundException, DeliveryStatusNotFoundException {
-		DeliveryStatus deliverystatus = melodyservice.getMusicId(id);
+		DeliveryStatus deliverystatus = deliverystatusservice.getMusicId(id);
 		return new ResponseEntity<DeliveryStatus>(deliverystatus, HttpStatus.OK);
 	}
 
 	@PostMapping
 	public ResponseEntity<DeliveryStatus> createorUpdate(@RequestBody DeliveryStatus DeliveryStatus) {
-		DeliveryStatus update = melodyservice.createmusic(DeliveryStatus);
+		DeliveryStatus update = deliverystatusservice.createmusic(DeliveryStatus);
 		return new ResponseEntity<DeliveryStatus>(update, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<DeliveryStatus> UpdateCategory(@RequestBody DeliveryStatus DeliveryStatus,
 			@PathVariable("id") int id) throws DeliveryStatusNotFoundException { // request from DB
-		DeliveryStatus std = melodyservice.UpdateMusic(DeliveryStatus, id);
+		DeliveryStatus std = deliverystatusservice.UpdateMusic(DeliveryStatus, id);
 		return new ResponseEntity<DeliveryStatus>(std, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
 	public HttpStatus deleteDeliveryStatus(@PathVariable("id") int id)
 			throws ClassNotFoundException, DeliveryStatusNotFoundException {
-		melodyservice.deletemusic(id);
+		deliverystatusservice.deletemusic(id);
 		return HttpStatus.OK;
 	}
 }

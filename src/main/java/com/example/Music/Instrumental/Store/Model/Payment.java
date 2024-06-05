@@ -29,6 +29,10 @@ public class Payment {
 	@JoinColumn(name = "deliverystatus")
 	private DeliveryStatus deliverystatus;
 
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address")
+	private Address address;
+
 	public int getId() {
 		return id;
 	}

@@ -22,38 +22,38 @@ import com.example.Music.Instrumental.Store.Service.PlaceOrderService;
 @RequestMapping("/styles")
 public class PlaceOrderController {
 	@Autowired
-	PlaceOrderService karnaticservice;
+	PlaceOrderService placeorderservice;
 
 	@GetMapping
 	public ResponseEntity<List<PlaceOrder>> getPlaceOrder() {
-		List<PlaceOrder> PlaceOrder = karnaticservice.getMusic();
+		List<PlaceOrder> PlaceOrder = placeorderservice.getMusic();
 		return new ResponseEntity<List<PlaceOrder>>(PlaceOrder, HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<PlaceOrder> getPlaceOrderId(@PathVariable("id") int id)
 			throws ClassNotFoundException, PlaceOrderNotFoundException {
-		PlaceOrder PlaceOrder = karnaticservice.getMusicId(id);
+		PlaceOrder PlaceOrder = placeorderservice.getMusicId(id);
 		return new ResponseEntity<PlaceOrder>(PlaceOrder, HttpStatus.OK);
 	}
 
 	@PostMapping
 	public ResponseEntity<PlaceOrder> createorUpdate(@RequestBody PlaceOrder PlaceOrder) {
-		PlaceOrder update = karnaticservice.createmusic(PlaceOrder);
+		PlaceOrder update = placeorderservice.createmusic(PlaceOrder);
 		return new ResponseEntity<PlaceOrder>(update, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<PlaceOrder> UpdatePlaceOrder(@RequestBody PlaceOrder PlaceOrder, @PathVariable("id") int id)
 			throws PlaceOrderNotFoundException { // request from DB
-		PlaceOrder std = karnaticservice.UpdateMusic(PlaceOrder, id);
+		PlaceOrder std = placeorderservice.UpdateMusic(PlaceOrder, id);
 		return new ResponseEntity<PlaceOrder>(std, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
 	public HttpStatus deletePlaceOrder(@PathVariable("id") int id)
 			throws ClassNotFoundException, PlaceOrderNotFoundException {
-		karnaticservice.deletemusic(id);
+		placeorderservice.deletemusic(id);
 		return HttpStatus.OK;
 	}
 

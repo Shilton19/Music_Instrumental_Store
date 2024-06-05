@@ -37,30 +37,31 @@ public class RegistrationService {
 	}
 
 	public Registrations UpdateMusic(Registrations Registrations, int id) throws RegistrationNOtFoundException {
-			Optional<Registrations> rege = Registrationsrepository.findById(id);
-			if (rege.isPresent()) {
-				Registrations regi = rege.get();
-				if (Registrations.getUsername() != null) {
-					regi.setUsername(Registrations.getUsername());
-				}
-				if (Registrations.getPassword() != null) {
-					regi.setPassword(Registrations.getPassword());
-				}
-				if (Registrations.getMobileNumber() != null) {
-					regi.setMobileNumber(Registrations.getMobileNumber());
-				}
-				if (Registrations.getMailId() != null) {
-					regi.setMailId(Registrations.getMailId());
-				}
-				if (Registrations.getAddress() != null) {
-					regi.setAddress(Registrations.getAddress());
-				}
-				return Registrationsrepository.save(regi);
-			} else {
-				throw new RegistrationNOtFoundException("Given data is not found");
+		Optional<Registrations> rege = Registrationsrepository.findById(id);
+		if (rege.isPresent()) {
+			Registrations regi = rege.get();
+			if (Registrations.getUsername() != null) {
+				regi.setUsername(Registrations.getUsername());
 			}
-	
+			if (Registrations.getPassword() != null) {
+				regi.setPassword(Registrations.getPassword());
+			}
+			if (Registrations.getMobileNumber() != null) {
+				regi.setMobileNumber(Registrations.getMobileNumber());
+			}
+			if (Registrations.getMailId() != null) {
+				regi.setMailId(Registrations.getMailId());
+			}
+			if (Registrations.getAddress() != null) {
+				regi.setAddress(Registrations.getAddress());
+			}
+			return Registrationsrepository.save(regi);
+		} else {
+			throw new RegistrationNOtFoundException("Given data is not found");
+		}
+
 	}
+
 	public void deletemusic(int id) throws RegistrationNOtFoundException {
 		Optional<Registrations> reg = Registrationsrepository.findById(id);
 		if (reg.isPresent()) {

@@ -22,40 +22,39 @@ import com.example.Music.Instrumental.Store.Service.RegistrationService;
 @RequestMapping("/musicflow")
 public class RegistrationController {
 	@Autowired
-	RegistrationService melts;
+	RegistrationService registrationservice;
 
 	@GetMapping
 //		@RequestMapping(method=RequestMethod.GET)//not used now a days
 	public ResponseEntity<List<Registrations>> getRegistration() {
-		List<Registrations> Registration = melts.getMusics();
+		List<Registrations> Registration = registrationservice.getMusics();
 		return new ResponseEntity<List<Registrations>>(Registration, HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Registrations> getRegistrationId(@PathVariable("id") int id)
 			throws ClassNotFoundException, RegistrationNOtFoundException {
-		Registrations Registration = melts.getMusicsId(id);
+		Registrations Registration = registrationservice.getMusicsId(id);
 		return new ResponseEntity<Registrations>(Registration, HttpStatus.OK);
 	}
 
 	@PostMapping
 	public ResponseEntity<Registrations> createorUpdate(@RequestBody Registrations Registration) {
-		Registrations update = melts.createmusics(Registration);
+		Registrations update = registrationservice.createmusics(Registration);
 		return new ResponseEntity<Registrations>(update, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Registrations> UpdateCategory(@RequestBody Registrations Registration,
-			@PathVariable("id") int id) throws ClassNotFoundException, RegistrationNOtFoundException { // request from
-																										// DB
-		Registrations stds = melts.UpdateMusic(Registration, id);
+			@PathVariable("id") int id) throws ClassNotFoundException, RegistrationNOtFoundException { // request from DB
+		Registrations stds = registrationservice.UpdateMusic(Registration, id);
 		return new ResponseEntity<Registrations>(stds, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
 	public HttpStatus deleteCategory(@PathVariable("id") int id)
 			throws ClassNotFoundException, RegistrationNOtFoundException {
-		melts.deletemusic(id);
+		registrationservice.deletemusic(id);
 		return HttpStatus.OK;
 	}
 }

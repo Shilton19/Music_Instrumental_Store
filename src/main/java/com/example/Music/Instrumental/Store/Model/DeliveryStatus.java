@@ -11,13 +11,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.SequenceGenerator;
 
 @Entity
 public class DeliveryStatus {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "orderstatus_generator")
-	@SequenceGenerator(name = "orderstatus_generator", sequenceName = "orderstatus_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int orderid;
 	@Column
 	private Date orderingDate;
@@ -31,6 +29,10 @@ public class DeliveryStatus {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id", unique = false)
 	private Registrations registrations;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "placeorder")
+	private PlaceOrder placeorder;
 
 	public DeliveryStatus(int orderid, Timestamp orderingDate, boolean orderAssigned, boolean orderDispatched,
 			boolean orderDelivered, Registrations registrations, Payment payment) {

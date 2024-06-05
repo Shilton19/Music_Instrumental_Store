@@ -22,44 +22,39 @@ import com.example.Music.Instrumental.Store.Service.CategoryService;
 @RequestMapping("/musics")
 public class CategoryController {
 	@Autowired
-	CategoryService musicservice;
+	CategoryService categoryservice;
 
 	@GetMapping
 	public ResponseEntity<List<Category>> getCategory() {
-		List<Category> Category = musicservice.getMusic();
+		List<Category> Category = categoryservice.getMusic();
 		return new ResponseEntity<List<Category>>(Category, HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Category> getCategoryId(@PathVariable("id") int id)
 			throws ClassNotFoundException, CategoryNOtFoundException {
-		Category Category = musicservice.getMusicId(id);
+		Category Category = categoryservice.getMusicId(id);
 		return new ResponseEntity<Category>(Category, HttpStatus.OK);
 	}
 
 	@PostMapping
 	public ResponseEntity<Category> createorUpdate(@RequestBody Category Category) {
-		Category update = musicservice.createmusic(Category);
+		Category update = categoryservice.createmusic(Category);
 		return new ResponseEntity<Category>(update, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Category> UpdateCategory(@RequestBody Category Category, @PathVariable("id") int id)
 			throws CategoryNOtFoundException { // request from DB
-		Category std = musicservice.UpdateMusic(Category, id);
+		Category std = categoryservice.UpdateMusic(Category, id);
 		return new ResponseEntity<Category>(std, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
 	public HttpStatus deleteCategory(@PathVariable("id") int id)
 			throws ClassNotFoundException, CategoryNOtFoundException {
-		musicservice.deletemusic(id);
+		categoryservice.deletemusic(id);
 		return HttpStatus.OK;
 	}
 
-//	@ExceptionHandler(ClassNotFoundException.class)
-//	public final ResponseEntity<ErrorDetails> handleAllException(ClassNotFoundException ex, WebRequest request) {
-//		ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
-//		return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
-//	}
 }
